@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mathieu Antonopoulos - Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#home" class="nav-logo">MA</a>
+            <ul class="nav-menu" id="nav-menu">
+                <li class="nav-item">
+                    <a href="#home" class="nav-link">Home</a>
+                </li>
+                <!-- <li class="nav-item">
+                    <a href="#about" class="nav-link">About</a>
+                </li> -->
+                <li class="nav-item">
+                    <a href="#education" class="nav-link">Resume</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#projects" class="nav-link">Projects</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#skills" class="nav-link">Skills</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#contact" class="nav-link">Contact</a>
+                </li>
+            </ul>
+            <div class="nav-toggle" id="nav-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <!-- Pathfinding Maze Background -->
+        <canvas id="pathfindingMaze" class="maze-background"></canvas>
+        
+        <div class="hero-content">
+            <div class="hero-visual">
+                <div class="profile-image">
+                    <!-- PLACEHOLDER: Replace with your photo -->
+                    <img src="https://via.placeholder.com/300x300/1a1a2e/ffffff?text=YOUR+PHOTO" alt="Mathieu Antonopoulos" id="profile-img">
+                </div>
+            </div>
+            <div class="hero-text">
+                <h1 class="hero-title">
+                    Hi, I'm <span class="gradient-text">Mathieu Antonopoulos</span>
+                </h1>
+                <p class="hero-subtitle">
+                    <span class="typing-text" id="typing-text"></span>
+                    <span class="cursor">|</span>
+                </p>
+                <p class="hero-description">
+                    <!-- PLACEHOLDER: Add your professional summary here -->
+                    <!-- Passionate computer scientist with expertise in [YOUR SPECIALIZATION]. 
+                    I create innovative solutions and love tackling complex technical challenges. -->
+                </p>
+                <div class="hero-buttons">
+                    <a href="CV_EN .pdf" class="btn-primary" target="_blank">
+                        <i class="fas fa-file-pdf"></i>
+                        View My Resume
+                    </a>
+                    <a href="#contact" class="btn-secondary">
+                        <i class="fas fa-envelope"></i>
+                        Get In Touch
+                    </a>
+                    
+                    <!-- Social Media Links -->
+                    <a href="https://linkedin.com/in/mathieu-antonopoulos-01b94616a" class="btn-secondary" target="_blank" aria-label="LinkedIn Profile">
+                        <i class="fab fa-linkedin-in"></i>
+                        <span>LinkedIn</span>
+                    </a>
+                    <a href="https://scholar.google.com/citations?user=YOUR_SCHOLAR_ID" class="btn-secondary" target="_blank" aria-label="Google Scholar Profile">
+                        <i class="fas fa-graduation-cap"></i>
+                        <span>Google Scholar</span>
+                    </a>
+                    <a href="https://github.com/Mathieu-Antonopoulos" class="btn-secondary" target="_blank" aria-label="GitHub Profile">
+                        <i class="fab fa-github"></i>
+                        <span>GitHub</span>
+                    </a>
+                    <!-- PLACEHOLDER: Replace the URLs above with your actual profile links -->
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <div class="scroll-arrow"></div>
+        </div>
+    </section>
+
+    <!-- About Section
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Building the Future Through Code</h3>
+                    <p>
+                        I am a dedicated computer scientist with [X] years of experience in [YOUR FIELD]. 
+                        My passion lies in [YOUR INTERESTS] and I specialize in [YOUR SPECIALIZATIONS].
+                    </p>
+                    <p>
+                        Throughout my career, I've worked on [DESCRIBE YOUR EXPERIENCE]. 
+                        I believe in writing clean, efficient code and staying updated with the latest technologies.
+                    </p>
+                    <div class="stats">
+                        <div class="stat">
+                            <h4>50+</h4>
+                            <p>Projects Completed</p>
+                        </div>
+                        <div class="stat">
+                            <h4>3+</h4>
+                            <p>Years Experience</p>
+                        </div>
+                        <div class="stat">
+                            <h4>10+</h4>
+                            <p>Technologies</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-visual">
+                    <div class="code-block">
+                        <div class="code-header">
+                            <div class="dots">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                            <span>mathieu.py</span>
+                        </div>
+                        <div class="code-content">
+                            <pre><code class="language-python">
+class Developer:
+    def __init__(self):
+        self.name = "Mathieu Antonopoulos"
+        self.role = "Computer Scientist"
+        self.languages = ["Python", "JavaScript", "Java"]
+        self.passion = "Problem Solving"
+    
+    def create_solutions(self):
+        return "Innovative & Efficient Code"
+                            </code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> -->
+
+    <!-- Resume Section -->
+    <section id="education" class="education">
+        <div class="container">
+            <h2 class="section-title">Resume</h2>
+            
+            <!-- Professional Experience Subsection -->
+            <div class="section-subsection">
+                <h3 class="subsection-title">
+                    <i class="fas fa-briefcase"></i>
+                    Professional Experience
+                </h3>
+                <div class="education-timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-date">April - July 2025</div>
+                        <div class="timeline-content">
+                            <div class="timeline-logo">
+                                <img src="images/climaviation.png" alt="Climaviation Logo">
+                            </div>
+                            <h3>Machine Learning Intern</h3>
+                            <h4><!-- PLACEHOLDER: Company Name -->Climaviation (IPSL Research Lab)</h4>
+                            <div class="timeline-location">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Paris, France</span>
+                            </div>
+                            <p>
+                                <!-- PLACEHOLDER: Add your work experience -->
+                                Design and train AI models to correct atmospheric measurement biases, improving the accuracy of environmental data. 
+                                Focus on predicting Ice Super-Saturated Regions (ISSRs) to enable contrail avoidance strategies in aviation.
+                            </p>
+                            <div class="education-skills">
+                                <span class="skill-tag">Atmospheric-data analysis</span>
+                                <span class="skill-tag">ML</span>
+                                <span class="skill-tag">DL</span>
+                                <span class="skill-tag">PyTorch</span>
+                                <span class="skill-tag">Python</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-date">2022 - 2024</div>
+                        <div class="timeline-content">
+                            <div class="timeline-logo">
+                                <img src="images/worldstrides-logo.png" alt="worldstrides Logo">
+                            </div>
+                            <h3>Student services / IT support</h3>
+                            <h4><!-- PLACEHOLDER: Company Name -->ISA by Worldstrides</h4>
+                            <div class="timeline-location">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Paris, France</span>
+                            </div>
+                            <p>
+                                <!-- PLACEHOLDER: Add your internship experience -->
+                                Actively guided students through the complexities of the study abroad process, from application to cultural integration and academic support.	
+                                Contributed to team meetings and planning travel logistics, cultural norms, safety protocols.
+                            </p>
+                            <div class="education-skills">
+                                <span class="skill-tag">Office Suite</span>
+                                <span class="skill-tag">Database</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Education Subsection -->
+            <div class="section-subsection">
+                <h3 class="subsection-title">
+                    <i class="fas fa-graduation-cap"></i>
+                    Education
+                </h3>
+                <div class="education-timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-date">Since 2024</div>
+                        <div class="timeline-content">
+                            <div class="timeline-logo">
+                                <img src="images/ip paris.png" alt="Institut Polytechnique de Paris Logo">
+                            </div>
+                            <h3>Master's Degree in Computer Science</h3>
+                            <h4><!-- PLACEHOLDER: University Name -->Institut Polytechnique de Paris</h4>
+                            <div class="timeline-location">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Paris, France</span>
+                            </div>
+                            <p>
+                                <!-- PLACEHOLDER: Add your achievements and focus areas -->
+                                Master of Data-AI
+                            </p>
+                            <div class="education-skills">
+                                <span class="skill-tag">Advanced Algorithms</span>
+                                <span class="skill-tag">Machine Learning</span>
+                                <span class="skill-tag">Software Engineering</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-date">2023 - 2024</div>
+                        <div class="timeline-content">
+                            <div class="timeline-logo">
+                                <img src="images/sdsu_primary_logo_rgb_stacked_full-color.png" alt="San Diego State University Logo">
+                            </div>
+                            <h3>Exchange program: Bachelor of Computer Science</h3>
+                            <h4><!-- PLACEHOLDER: University Name -->San Diego State University</h4>
+                            <div class="timeline-location">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>San Diego, CA, USA</span>
+                            </div>
+                            <p>
+                                <!-- PLACEHOLDER: Add your bachelor's info -->
+                                International exchange program focusing on software development and cross-cultural collaboration.
+                            </p>
+                            <div class="education-skills">
+                                <span class="skill-tag">Data Structures</span>
+                                <span class="skill-tag">Programming</span>
+                                <span class="skill-tag">Database Systems</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-date">2021 - 2024</div>
+                        <div class="timeline-content">
+                            <div class="timeline-logo">
+                                <img src="images/Logo_Université_Paris-Cité_(partenariat_Wikimédia).svg" alt="Université Paris cité Logo">
+                            </div>
+                            <h3>Bachelor's Degree in Computer Science</h3>
+                            <h4><!-- PLACEHOLDER: University Name -->Université Paris Cité</h4>
+                            <div class="timeline-location">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Paris, France</span>
+                            </div>
+                            <p>
+                                <!-- PLACEHOLDER: Add your bachelor's info -->
+                                Comprehensive computer science foundation with emphasis on theoretical and practical applications.
+                            </p>
+                            <div class="education-skills">
+                                <span class="skill-tag">Data Structures</span>
+                                <span class="skill-tag">Programming</span>
+                                <span class="skill-tag">Database Systems</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Add more education items as needed -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+        <div class="container">
+            <h2 class="section-title">Featured Projects</h2>
+            <div class="projects-filter">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="ml">Machine Learning</button>
+                <button class="filter-btn" data-filter="web">Web Development</button>
+                <!-- <button class="filter-btn" data-filter="mobile">Mobile</button> -->
+            </div>
+            
+            <!-- Project Carousel -->
+            <div class="projects-carousel">
+                <button class="carousel-btn carousel-prev" id="prevProject">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                
+                <div class="projects-container">
+                    <div class="projects-wrapper" id="projectsWrapper">
+
+                        <!-- Chess -->
+                        <div class="project-card active" data-category="ml">
+                            <div class="project-image">
+                                <img src="images/logo_p.png" alt="Project 1">
+                                    <div class="project-overlay">
+                                        <!-- <a href="https://projetl2i1.streamlit.app" class="project-link" target="_blank" title="Web App">
+                                            <i class="fas fa-external-link-alt"></i>
+                                        </a> -->
+                                        <!-- <a href="#" class="project-link demo-link" target="_blank" title="Demo Video">
+                                            <i class="fas fa-video"></i>
+                                        </a> -->
+                                        <a href="https://github.com/Enzo-py/chess-bot" class="project-link" target="_blank" title="GitHub Repository">
+                                            <i class="fab fa-github"></i>
+                                        </a>
+                                        <a href="projects_papers/INF581___Project_Report___ChessBot__Team__yes.pdf" class="project-link" target="_blank" title="View PDF Report">
+                                            <i class="fas fa-file-pdf"></i>
+                                        </a>
+                                    </div>
+                            </div>
+                            <div class="project-content">
+                                <div class="project-header">
+                                    <h3>Chessbot: Reinforcement Learning project</h3>
+                                </div>
+                                <span class="project-date">2025</span>
+                    <div class="project-description">
+                        <p class="description-short">Developed a flexible system for chess-playing agents as part of a Reinforcement Learning course at École Polytechnique. Integrated a Python backend with a web frontend for real-time visualization and gameplay. Implemented various strategies, including heuristics, MCTS, and deep learning, to benchmark performance against state-of-the-art methods.</p>
+                        <!-- <button class="expand-btn" onclick="toggleDescription(this)">Read More</button> -->
+                    </div>
+                                <!-- <div class="project-preview">
+                                    <div class="pdf-preview">
+                                        <div class="pdf-header">
+                                            <i class="fas fa-file-pdf"></i>
+                                            <span>Project Report</span>
+                                            <button class="pdf-toggle" onclick="togglePDF('pdf1')">
+                                                <i class="fas fa-expand"></i>
+                                            </button>
+                                        </div>
+                                        <div class="pdf-container" id="pdf1">
+                                            <embed src="projects_papers/INF581___Project_Report___ChessBot__Team__yes.pdf" type="application/pdf" width="100%" height="300px" />
+                                            Alternative: <iframe src="path/to/your/project1.pdf" width="100%" height="300px"></iframe>
+                                        </div>
+                                    </div>
+                                </div> -->
+                                <div class="project-tech">
+                                    <span class="tech-tag">PyTorch</span>
+                                    <span class="tech-tag">Deep Learning</span>
+                                    <span class="tech-tag">Reinforcement Learning</span>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Oslo hackathon -->
+                        <div class="project-card active" data-category="ml">
+                            <div class="project-image">
+                                <img src="images/ll-impact_logo.png" alt="Project 1">
+                                    <div class="project-overlay">
+                                        <!-- <a href="https://projetl2i1.streamlit.app" class="project-link" target="_blank" title="Web App">
+                                            <i class="fas fa-external-link-alt"></i>
+                                        </a> -->
+                                        <a href="https://www.youtube.com/watch?v=LyVdCen5-Xk" class="project-link demo-link" target="_blank" title="Demo Video">
+                                            <i class="fas fa-video"></i>
+                                        </a>
+                                        <a href="https://github.com/egroh/meta_hackathon_oslo_2025" class="project-link" target="_blank" title="GitHub Repository">
+                                            <i class="fab fa-github"></i>
+                                        </a>
+                                    </div>
+                            </div>
+                            <div class="project-content">
+                                <div class="project-header">
+                                    <h3>LL-Impact</h3>
+                                </div>
+                                <span class="project-date">2025</span>
+                                    <div class="project-description">
+                                        <p class="description-short">LL-Impact is a LLaMA-powered assistant for legislators and diplomats, designed to generate insights that support negotiation and policy-making. Built in just 24 hours as part of the Oslo Meta AI LLaMA Hackathon 2025, it enhances and simplifies negotiation and communication in international settings.                    </p>
+                                    </div>
+                                 <div class="project-tech">
+                                    <span class="tech-tag">Llama 3.3</span>
+                                    <span class="tech-tag">RAG</span>
+                                    <span class="tech-tag">LLM</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Data Visualization -->
+                        <div class="project-card" data-category="web">
+                            <div class="project-image">
+                                <img src="images/2025-09-29_12-47-10.png" alt="Project 3">
+                                <div class="project-overlay">
+                                    <!-- <a href="#" class="project-link" target="_blank" title="App Store">
+                                        <i class="fas fa-external-link-alt"></i>
+                                    </a>
+                                    <a href="#" class="project-link demo-link" target="_blank" title="App Demo">
+                                        <i class="fas fa-mobile-alt"></i>
+                                    </a> -->
+                                    <a href="https://github.com/Enzo-py/dataviz-project-m1" class="project-link" target="_blank" title="GitHub Repository">
+                                        <i class="fab fa-github"></i>
+                                    </a>
+                                    <a href="projects_papers/Data_Viz_Report.pdf" class="project-link" target="_blank" title="View PDF Report">
+                                        <i class="fas fa-file-pdf"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="project-content">
+                                <div class="project-header">
+                                    <h3>Football Data Visualization Project</h3>
+                                </div>
+                                <span class="project-date">2024</span>
+                                <div class="project-description">
+                                    <p class="description-short"> Developed as part of a Data Visualization course at École Polytechnique. Created an interactive web app for exploring player and team statistics across Europe’s top five leagues (2021–2024), with multi-season comparisons, advanced filtering, and responsive visualizations.</p>
+                                    <!-- <button class="expand-btn" onclick="toggleDescription(this)">Read More</button> -->
+                                </div>
+                                <!-- <div class="project-preview">
+                                    <div class="pdf-preview">
+                                        <div class="pdf-header">
+                                            <i class="fas fa-file-pdf"></i>
+                                            <span>Project Report</span>
+                                            <button class="pdf-toggle" onclick="togglePDF('pdf3')">
+                                                <i class="fas fa-expand"></i>
+                                            </button>
+                                        </div>
+                                        <div class="pdf-container" id="pdf3">
+                                            <embed src="projects_papers/Data_Viz_Report.pdf" type="application/pdf" width="100%" height="300px" />
+                                            Alternative: <iframe src="path/to/your/project3.pdf" width="100%" height="300px"></iframe>
+                                        </div>
+                                    </div>
+                                </div> -->
+                                <div class="project-tech">
+                                    <span class="tech-tag">D3.js</span>
+                                    <span class="tech-tag">CSS</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ML twitter  -->
+                        <div class="project-card" data-category="ml">
+                            <div class="project-image">
+                                <img src="images/logo_p.png" alt="Project 4">
+                                <div class="project-overlay">
+                                    <!-- <a href="#" class="project-link" target="_blank" title="Live Site">
+                                        <i class="fas fa-external-link-alt"></i>
+                                    </a>
+                                    <a href="#" class="project-link demo-link" target="_blank" title="Platform Demo">
+                                        <i class="fas fa-desktop"></i>
+                                    </a> -->
+                                    <a href="https://github.com/TimLukaHorstmann/ml-data-challenge-2024-submission" class="project-link" target="_blank" title="GitHub Repository">
+                                        <i class="fab fa-github"></i>
+                                    </a>
+                                    <a href="projects_papers/ML_Intro_Report.pdf" class="project-link" target="_blank" title="View PDF Report">
+                                        <i class="fas fa-file-pdf"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="project-content">
+                                <div class="project-header">
+                                    <h3>Sub-event Detection in Twitter Streams</h3>
+                                </div>
+                                <span class="project-date">2024</span>
+                                <div class="project-description">
+                                    <p class="description-short">Developed models to detect match events (e.g., goals, red cards) from Twitter activity as part of a Machine & Deep Learning Challenge at École Polytechnique. Compared ML, graph-based, and LLM approaches; final model (EnhancedPeriodClassifier) achieved 77% accuracy by combining BERTweet embeddings with handcrafted features and attention mechanisms.</p>
+                                    <!-- <button class="expand-btn" onclick="toggleDescription(this)">Read More</button> -->
+                                </div>
+                                <!-- <div class="project-preview">
+                                    <div class="pdf-preview">
+                                        <div class="pdf-header">
+                                            <i class="fas fa-file-pdf"></i>
+                                            <span>Project Report</span>
+                                            <button class="pdf-toggle" onclick="togglePDF('pdf4')">
+                                                <i class="fas fa-expand"></i>
+                                            </button>
+                                        </div>
+                                        <div class="pdf-container" id="pdf4">
+                                            <embed src="projects_papers/ML_Intro_Report.pdf" type="application/pdf" width="100%" height="300px" />
+                                            Alternative: <iframe src="path/to/your/project4.pdf" width="100%" height="300px"></iframe>
+                                        </div>
+                                    </div>
+                                </div> -->
+                                <div class="project-tech">
+                                    <span class="tech-tag">NLP</span>
+                                    <span class="tech-tag">PyTorch</span>
+                                    <span class="tech-tag">Scikit-Learn</span>
+                                    <span class="tech-tag">Transformers</span>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Stochastic Resonance -->
+                        <div class="project-card active" data-category="ml">
+                            <div class="project-image">
+                                <img src="images/2025-09-29_12-20-00.png" alt="Project 1">
+                                <div class="project-overlay">
+                                    <a href="projects_papers/Term_Project_Paper ML.pdf" class="project-link" target="_blank" title="View PDF Report">
+                                        <i class="fas fa-file-pdf"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="project-content">
+                                <div class="project-header">
+                                    <h3>Machine Learning in Stochastic Resonance</h3>
+                                </div>
+                                <span class="project-date">2024</span>
+                                <div class="project-description">
+                                    <p class="description-short">Applied machine learning and stochastic resonance principles to enhance neurological signal detection in noisy environments. Developed filtering techniques, optimized signal-to-noise ratio, and analyzed performance improvements through controlled noise addition.</p>
+                                    <!-- <button class="expand-btn" onclick="toggleDescription(this)">Read More</button> -->
+                                </div>
+                                <!-- <div class="project-preview">
+                                    <div class="pdf-preview">
+                                        <div class="pdf-header">
+                                            <i class="fas fa-file-pdf"></i>
+                                            <span>Project Report</span>
+                                            <button class="pdf-toggle" onclick="togglePDF('pdf1')">
+                                                <i class="fas fa-expand"></i>
+                                            </button>
+                                        </div>
+                                        <div class="pdf-container" id="pdf1">
+                                            <embed src="projects_papers/Term_Project_Paper ML.pdf" type="application/pdf" width="100%" height="300px" />
+                                            Alternative: <iframe src="path/to/your/project1.pdf" width="100%" height="300px"></iframe>
+                                        </div>
+                                    </div>
+                                </div> -->
+                                <div class="project-tech">
+                                    <span class="tech-tag">MATLAB</span>
+                                    <span class="tech-tag">Scikit-Learn</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Machine Learning from disaster -->
+                        <div class="project-card" data-category="ml">
+                            <div class="project-image">
+                                <img src="images/2025-09-29_12-24-53.png" alt="Project 2">
+                                <div class="project-overlay">
+                                    <a href="https://projetl2i1.streamlit.app" class="project-link" target="_blank" title="Web App">
+                                        <i class="fas fa-external-link-alt"></i>
+                                    </a>
+                                    <!-- <a href="#" class="project-link demo-link" target="_blank" title="Demo Video">
+                                        <i class="fas fa-video"></i>
+                                    </a> -->
+                                    <!-- <a href="#" class="project-link" target="_blank" title="GitHub Repository">
+                                        <i class="fab fa-github"></i>
+                                    </a> -->
+                                    <a href="projects_papers/Rapport de projet.pdf" class="project-link" target="_blank" title="View PDF Report">
+                                        <i class="fas fa-file-pdf"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="project-content">
+                                <div class="project-header">
+                                    <h3>Machine Learning from disaster</h3>
+                                </div>
+                                <span class="project-date">2023</span>
+                                <div class="project-description">
+                                    <p class="description-short"> Developed machine learning models to predict passenger survival for a Kaggle competition, leveraging feature engineering, exploratory data analysis, and ensemble learning techniques. Deployed an interactive Streamlit web app to visualize predictions and key insights.</p>
+                                </div>
+                                <!-- <div class="project-preview">
+                                    <div class="pdf-preview">
+                                        <div class="pdf-header">
+                                            <i class="fas fa-file-pdf"></i>
+                                            <span>Project Report</span>
+                                            <button class="pdf-toggle" onclick="togglePDF('pdf2')">
+                                                <i class="fas fa-expand"></i>
+                                            </button>
+                                        </div>
+                                        <div class="pdf-container" id="pdf2">
+                                            <embed src="projects_papers/Rapport de projet.pdf" type="application/pdf" width="100%" height="300px" />
+                                            Alternative: <iframe src="path/to/your/project2.pdf" width="100%" height="300px"></iframe>
+                                        </div>
+                                    </div>
+                                </div> -->
+                                <div class="project-tech">
+                                    <span class="tech-tag">Python</span>
+                                    <span class="tech-tag">Scikit-Learn</span>
+                                    <span class="tech-tag">Streamlit</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="carousel-btn carousel-next" id="nextProject">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+            
+            <!-- Project Indicators -->
+            <div class="carousel-indicators" id="carouselIndicators">
+                <!-- Indicators will be generated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills">
+        <div class="container">
+            <h2 class="section-title">Technical Skills</h2>
+            
+            <!-- Tech Stack organized by categories -->
+            
+            <!-- Programming Languages -->
+            <div class="tech-category-section">
+                <h3 class="tech-category-title">Programming Languages</h3>
+                <div class="tech-logos-grid">
+                    <!-- Python -->
+                    <a href="https://www.python.org/" target="_blank" class="tech-logo-item">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" title="Python">
+                    </a>
+                    <!-- Java -->
+                    <a href="https://www.java.com/" target="_blank" class="tech-logo-item">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="Java" title="Java">
+                    </a>
+                    <!-- JavaScript -->
+                    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank" class="tech-logo-item">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" title="JavaScript">
+                    </a>
+                    <!-- C++ -->
+                    <a href="https://isocpp.org/" target="_blank" class="tech-logo-item">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" alt="C++" title="C++">
+                    </a>
+                    <!-- R -->
+                    <!-- <a href="https://www.r-project.org/" target="_blank" class="tech-logo-item">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/r/r-original.svg" alt="R" title="R">
+                    </a> -->
+                    <!-- SQL -->
+                    <a href="https://www.mysql.com/" target="_blank" class="tech-logo-item">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="SQL" title="SQL">
+                    </a>
+                    <!-- HTML5 -->
+                    <a href="https://developer.mozilla.org/en-US/docs/Web/HTML" target="_blank" class="tech-logo-item">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5" title="HTML5">
+                    </a>
+                    <!-- MATLAB -->
+                    <a href="https://www.mathworks.com/products/matlab.html" target="_blank" class="tech-logo-item">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/matlab/matlab-original.svg" alt="MATLAB" title="MATLAB">
+                    </a>
+                    <!-- Haskell -->
+                    <a href="https://www.haskell.org/" target="_blank" class="tech-logo-item">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/haskell/haskell-original.svg" alt="Haskell" title="Haskell">
+                    </a>
+                </div>
+            </div>
+
+            <!-- Selected Tools and Libraries -->
+            <div class="tech-category-section">
+                <h3 class="tech-category-title">Selected Tools and Libraries</h3>
+                <div class="tech-logos-grid">
+                    <!-- PyTorch -->
+                    <a href="https://pytorch.org/" target="_blank" class="tech-logo-item">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg" alt="PyTorch" title="PyTorch">
+                    </a>
+                    <!-- TensorFlow -->
+                    <a href="https://www.tensorflow.org/" target="_blank" class="tech-logo-item">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg" alt="TensorFlow" title="TensorFlow">
+                    </a>
+                    <!-- Scikit-learn -->
+                    <a href="https://scikit-learn.org/" target="_blank" class="tech-logo-item">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Scikit_learn_logo_small.svg" alt="Scikit-learn" title="Scikit-learn">
+                    </a>
+                    <!-- Pandas -->
+                    <a href="https://pandas.pydata.org/" target="_blank" class="tech-logo-item">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg" alt="Pandas" title="Pandas">
+                    </a>
+                    <!-- NumPy -->
+                    <a href="https://numpy.org/" target="_blank" class="tech-logo-item">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/numpy/numpy-original.svg" alt="NumPy" title="NumPy">
+                    </a>
+                    <!-- Keras -->
+                    <a href="https://keras.io/" target="_blank" class="tech-logo-item">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/ae/Keras_logo.svg" alt="Keras" title="Keras">
+                    </a>
+                    <!-- Hugging Face -->
+                    <a href="https://huggingface.co/" target="_blank" class="tech-logo-item">
+                        <img src="https://huggingface.co/front/assets/huggingface_logo.svg" alt="Hugging Face" title="Hugging Face">
+                    </a>
+                    <!-- OpenCV -->
+                    <a href="https://opencv.org/" target="_blank" class="tech-logo-item">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/opencv/opencv-original.svg" alt="OpenCV" title="OpenCV">
+                    </a>
+                    <!-- D3.js -->
+                    <a href="https://d3js.org/" target="_blank" class="tech-logo-item">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/d3js/d3js-original.svg" alt="D3.js" title="D3.js">
+                    </a>
+                    <!-- Seaborn (using custom colored icon) -->
+                    <a href="https://seaborn.pydata.org/" target="_blank" class="tech-logo-item">
+                        <svg viewBox="0 0 48 48" width="48" height="48" class="seaborn-logo">
+                            <circle cx="24" cy="14" r="6" fill="#4C8CBF"/>
+                            <circle cx="12" cy="30" r="6" fill="#88B4D8"/>
+                            <circle cx="36" cy="30" r="6" fill="#88B4D8"/>
+                        </svg>
+                    </a>
+                     <!-- Matplotlib -->
+                    <a href="https://matplotlib.org/" target="_blank" class="tech-logo-item">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/matplotlib/matplotlib-original.svg" alt="Matplotlib" title="Matplotlib">
+                    </a>
+                </div>
+            </div>
+
+            <!-- Software Development Stack -->
+            <div class="tech-category-section">
+                <h3 class="tech-category-title">Software Development Stack</h3>
+                <div class="tech-logos-grid">
+                    <!-- Git -->
+                    <a href="https://git-scm.com/" target="_blank" class="tech-logo-item">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git" title="Git">
+                    </a>
+                    <!-- GitHub -->
+                    <a href="https://github.com/" target="_blank" class="tech-logo-item">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" title="GitHub">
+                    </a>
+                    <!-- Docker -->
+                    <a href="https://www.docker.com/" target="_blank" class="tech-logo-item">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="Docker" title="Docker">
+                    </a>
+                </div>
+            </div>
+
+            <!-- Languages Card -->
+            <div class="skills-grid" style="margin-top: 2rem;">
+                <div class="skill-category">
+                    <h3><i class="fas fa-globe"></i> Languages</h3>
+                    <div class="skill-items">
+                        <div class="skill-item">
+                            <span class="skill-name">
+                                <span class="flag-icon">🇫🇷</span> French
+                            </span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="100%"></div>
+                            </div>
+                            <span class="skill-level">Native</span>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">
+                                <span class="flag-icon">🇭🇺</span> Hungarian
+                            </span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="100%"></div>
+                            </div>
+                            <span class="skill-level">Native</span>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">
+                                <span class="flag-icon">🇬🇧</span> English
+                            </span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="95%"></div>
+                            </div>
+                            <span class="skill-level">Fluent</span>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">
+                                <span class="flag-icon">🇩🇪</span> German
+                            </span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="65%"></div>
+                            </div>
+                            <span class="skill-level">B1 Certification</span>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">
+                                <span class="flag-icon">🇪🇸</span> Spanish
+                            </span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="60%"></div>
+                            </div>
+                            <span class="skill-level">Intermediate</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Let's Connect</h3>
+                    <p>
+                        <!-- PLACEHOLDER: Add your contact message -->
+                        I'm always interested in new opportunities and exciting projects. 
+                        Feel free to reach out if you'd like to collaborate!
+                    </p>
+                    <div class="contact-items">
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span><!-- PLACEHOLDER: Your email -->antonopoulos@ip-paris.fr</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span><!-- PLACEHOLDER: Your phone -->+33 6 51 44 59 54</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span><!-- PLACEHOLDER: Your location -->Paris, France</span>
+                        </div>
+                    </div>
+                    <div class="social-links">
+                        <a href="www.linkedin.com/in/mathieu-antonopoulos-01b94616a" class="social-link" target="_blank">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="https://github.com/Mathieu-Antonopoulos" class="social-link" target="_blank">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <!-- PLACEHOLDER: Add your social media links -->
+                    </div>
+                </div>
+                <form class="contact-form" id="contact-form">
+                    <div class="form-group">
+                        <input type="text" name="name" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" name="email" placeholder="Your Email" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="subject" placeholder="Subject" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="btn-primary">
+                        <i class="fas fa-paper-plane"></i>
+                        Send Message
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Mathieu Antonopoulos. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
