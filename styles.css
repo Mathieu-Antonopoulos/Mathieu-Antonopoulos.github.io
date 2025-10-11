@@ -290,7 +290,7 @@ body {
 
 .btn-primary {
     background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
-    color: var(--text-primary);
+    color: white;
 }
 
 .btn-primary:hover {
@@ -1073,10 +1073,21 @@ section {
     filter: grayscale(50%);
 }
 
+.timeline-logo-small {
+    width: 200px;
+    height: 100px;
+    right: calc(var(--spacing-sm) + 8px); /* 10px more to the left */
+    top: calc(var(--spacing-sm) + 15px); /* 10px more to the bottom */
+}
+
 .timeline-content:hover {
     border-color: var(--primary-color);
     box-shadow: 0 8px 25px rgba(37, 99, 235, 0.15);
     background: rgba(255, 255, 255, 0.08);
+}
+
+.timeline-content:hover .timeline-logo {
+    opacity: 0.9;
 }
 
 /* Completely override any inherited transforms on markers */
@@ -1129,9 +1140,9 @@ section {
 .timeline-date {
     position: absolute;
     right: calc(100% + var(--spacing-lg));
-    top: 0;
+    top: -2px; /* Align with the timeline marker dot */
     background: var(--primary-color);
-    color: var(--text-primary);
+    color: white; /* White text */
     padding: var(--spacing-xs) var(--spacing-md);
     border-radius: var(--radius-md);
     font-size: var(--font-size-sm);
@@ -1208,12 +1219,12 @@ section {
 }
 
 .skill-item {
-    margin-bottom: var(--spacing-lg);
+    margin-bottom: 0.5rem;
 }
 
 .skill-name {
     display: block;
-    margin-bottom: var(--spacing-sm);
+    margin-bottom: 0;
     color: var(--text-secondary);
     font-weight: 500;
 }
@@ -1224,6 +1235,7 @@ section {
     border-radius: var(--radius-md);
     overflow: hidden;
     position: relative;
+    margin-top: -0.05rem;
 }
 
 .skill-progress {
@@ -1255,25 +1267,27 @@ section {
 .flag-icon {
     font-size: 1.2em;
     margin-right: var(--spacing-sm);
+    margin-bottom: -0.2rem;
     display: inline-block;
 }
 
 .skill-level {
     font-size: var(--font-size-xs);
     color: var(--text-muted);
-    margin-top: var(--spacing-xs);
+    margin-top: -0.1rem;
     display: block;
     font-style: italic;
 }
 
 .skill-category:last-child .skill-item {
     position: relative;
+    margin-bottom: var(--spacing-lg); /* Keep normal margins for interests */
 }
 
 .skill-category:last-child .skill-name {
     display: flex;
     align-items: center;
-    margin-bottom: var(--spacing-sm);
+    margin-bottom: var(--spacing-sm); /* Keep margin for interests */
 }
 
 /* Tech Stack Logos Section */

@@ -794,6 +794,19 @@ function initPathfindingMaze() {
     const ctx = canvas.getContext('2d');
     let animationId;
     
+    // Load agent image
+    const agentImage = new Image();
+    agentImage.src = 'images/agent.png'; // Change this to your image path
+    let imageLoaded = false;
+    agentImage.onload = function() {
+        imageLoaded = true;
+        console.log('Agent image loaded successfully');
+    };
+    agentImage.onerror = function() {
+        console.error('Failed to load agent image');
+        imageLoaded = false;
+    };
+    
     // Maze parameters
     const CELL_SIZE = 25;
     let GRID_WIDTH, GRID_HEIGHT;
@@ -991,18 +1004,19 @@ function initPathfindingMaze() {
             agent.targetIndex++;
             if (agent.targetIndex >= path.length) {
                 // Reached end, restart from bottom-left with new random target
-                agent.x = 0;
-                agent.y = GRID_HEIGHT - 1;
-                agent.targetIndex = 0;
                 trail = [];
                 // Generate new random end position for next run
                 currentEndPosition = generateRandomEndPosition();
                 // Find new path from start
                 findPath(false);
+                // Reset agent position after new path is found
+                agent.x = 0;
+                agent.y = GRID_HEIGHT - 1;
+                agent.targetIndex = 0;
             }
         } else {
             // Move towards target
-            const speed = 0.05;
+            const speed = 0.10;
             agent.x += dx * speed;
             agent.y += dy * speed;
             
@@ -1078,13 +1092,13 @@ function initPathfindingMaze() {
             const y = point.y * CELL_SIZE + CELL_SIZE/2;
             
             // Outer glow
-            ctx.fillStyle = `rgba(255, 255, 0, ${point.glow * 0.2})`;
+            ctx.fillStyle = `rgba(37, 99, 235, ${point.glow * 0.2})`; // Blue
             ctx.beginPath();
             ctx.arc(x, y, 12, 0, Math.PI * 2);
             ctx.fill();
             
             // Inner bright core
-            ctx.fillStyle = `rgba(255, 255, 0, ${point.alpha * 0.7})`;
+            ctx.fillStyle = `rgba(59, 130, 246, ${point.alpha * 0.7})`; // Lighter blue
             ctx.beginPath();
             ctx.arc(x, y, 6, 0, Math.PI * 2);
             ctx.fill();
@@ -1102,23 +1116,36 @@ function initPathfindingMaze() {
         const agentScreenX = agent.x * CELL_SIZE + CELL_SIZE/2;
         const agentScreenY = agent.y * CELL_SIZE + CELL_SIZE/2;
         
-        // Pulsing aura
-        const pulse = Math.sin(Date.now() * 0.005) * 0.3 + 0.7;
-        ctx.fillStyle = `rgba(255, 255, 0, ${pulse * 0.3})`;
-        ctx.beginPath();
-        ctx.arc(agentScreenX, agentScreenY, 15 * pulse, 0, Math.PI * 2);
-        ctx.fill();
-        
-        // Agent body
-        ctx.fillStyle = 'rgba(255, 255, 0, 0.9)';
-        ctx.beginPath();
-        ctx.arc(agentScreenX, agentScreenY, 8, 0, Math.PI * 2);
-        ctx.fill();
-        
-        // Agent glow
-        ctx.strokeStyle = 'rgba(255, 255, 255, 0.8)';
-        ctx.lineWidth = 2;
-        ctx.stroke();
+        // Draw agent as circular clipped image
+        if (imageLoaded && agentImage.complete) {
+            const imageSize = 25; // Size of the circular image
+            ctx.save();
+            
+            // Create circular clipping path for dot shape
+            ctx.beginPath();
+            ctx.arc(agentScreenX, agentScreenY, imageSize / 2, 0, Math.PI * 2);
+            ctx.clip();
+            
+            // Draw image with reduced opacity
+            ctx.globalAlpha = 1.1; // Less opaque (50% transparency)
+            ctx.drawImage(agentImage, 
+                agentScreenX - imageSize / 2, 
+                agentScreenY - imageSize / 2, 
+                imageSize, 
+                imageSize);
+            ctx.restore();
+        } else {
+            // Fallback: Agent body as blue circle
+            // ctx.fillStyle = 'rgba(37, 99, 235, 0.9)'; // Blue
+            // ctx.beginPath();
+            // ctx.arc(agentScreenX, agentScreenY, 8, 0, Math.PI * 2);
+            // ctx.fill();
+            
+            // // Agent glow for fallback
+            // ctx.strokeStyle = 'rgba(255, 255, 255, 0.8)';
+            // ctx.lineWidth = 2;
+            // ctx.stroke();
+        }
     }
     
     // Handle clicks to add/remove obstacles
