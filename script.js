@@ -680,87 +680,87 @@ function throttle(func, limit) {
 window.addEventListener('scroll', throttle(updateActiveNavLink, 100));
 
 // Add loading screen functionality
-function initLoadingScreen() {
-    const loadingScreen = document.createElement('div');
-    loadingScreen.id = 'loading-screen';
-    loadingScreen.innerHTML = `
-        <div class="loading-content">
-            <div class="loading-logo">MA</div>
-            <div class="loading-spinner"></div>
-            <p>Loading Portfolio...</p>
-        </div>
-    `;
+// function initLoadingScreen() {
+//     const loadingScreen = document.createElement('div');
+//     loadingScreen.id = 'loading-screen';
+//     loadingScreen.innerHTML = `
+//         <div class="loading-content">
+//             <div class="loading-logo">MA</div>
+//             <div class="loading-spinner"></div>
+//             <p>Loading Portfolio...</p>
+//         </div>
+//     `;
     
-    loadingScreen.style.cssText = `
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: var(--bg-primary);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        z-index: 9999;
-        opacity: 1;
-        transition: opacity 0.5s ease-out;
-    `;
+//     loadingScreen.style.cssText = `
+//         position: fixed;
+//         top: 0;
+//         left: 0;
+//         width: 100%;
+//         height: 100%;
+//         background: var(--bg-primary);
+//         display: flex;
+//         align-items: center;
+//         justify-content: center;
+//         z-index: 9999;
+//         opacity: 1;
+//         transition: opacity 0.5s ease-out;
+//     `;
     
-    const loadingContent = loadingScreen.querySelector('.loading-content');
-    loadingContent.style.cssText = `
-        text-align: center;
-        color: var(--text-primary);
-    `;
+//     const loadingContent = loadingScreen.querySelector('.loading-content');
+//     loadingContent.style.cssText = `
+//         text-align: center;
+//         color: var(--text-primary);
+//     `;
     
-    const loadingLogo = loadingScreen.querySelector('.loading-logo');
-    loadingLogo.style.cssText = `
-        font-size: 3rem;
-        font-weight: 700;
-        background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        margin-bottom: 1rem;
-        animation: pulse 2s ease-in-out infinite;
-    `;
+//     const loadingLogo = loadingScreen.querySelector('.loading-logo');
+//     loadingLogo.style.cssText = `
+//         font-size: 3rem;
+//         font-weight: 700;
+//         background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+//         -webkit-background-clip: text;
+//         -webkit-text-fill-color: transparent;
+//         margin-bottom: 1rem;
+//         animation: pulse 2s ease-in-out infinite;
+//     `;
     
-    const loadingSpinner = loadingScreen.querySelector('.loading-spinner');
-    loadingSpinner.style.cssText = `
-        width: 40px;
-        height: 40px;
-        border: 3px solid var(--border-color);
-        border-top: 3px solid var(--primary-color);
-        border-radius: 50%;
-        animation: spin 1s linear infinite;
-        margin: 0 auto 1rem auto;
-    `;
+//     const loadingSpinner = loadingScreen.querySelector('.loading-spinner');
+//     loadingSpinner.style.cssText = `
+//         width: 40px;
+//         height: 40px;
+//         border: 3px solid var(--border-color);
+//         border-top: 3px solid var(--primary-color);
+//         border-radius: 50%;
+//         animation: spin 1s linear infinite;
+//         margin: 0 auto 1rem auto;
+//     `;
     
-    document.body.prepend(loadingScreen);
+//     document.body.prepend(loadingScreen);
     
-    // Remove loading screen when everything is loaded
-    window.addEventListener('load', function() {
-        setTimeout(() => {
-            loadingScreen.style.opacity = '0';
-            setTimeout(() => {
-                if (loadingScreen.parentNode) {
-                    loadingScreen.parentNode.removeChild(loadingScreen);
-                }
-            }, 500);
-        }, 1000);
-    });
-}
+//     // Remove loading screen when everything is loaded
+//     window.addEventListener('load', function() {
+//         setTimeout(() => {
+//             loadingScreen.style.opacity = '0';
+//             setTimeout(() => {
+//                 if (loadingScreen.parentNode) {
+//                     loadingScreen.parentNode.removeChild(loadingScreen);
+//                 }
+//             }, 500);
+//         }, 1000);
+//     });
+// }
 
-// Initialize loading screen
-initLoadingScreen();
+// // Initialize loading screen
+// initLoadingScreen();
 
-// Add CSS animations for loading screen
-const loadingStyles = document.createElement('style');
-loadingStyles.textContent = `
-    @keyframes pulse {
-        0%, 100% { transform: scale(1); }
-        50% { transform: scale(1.05); }
-    }
-`;
-document.head.appendChild(loadingStyles);
+// // Add CSS animations for loading screen
+// const loadingStyles = document.createElement('style');
+// loadingStyles.textContent = `
+//     @keyframes pulse {
+//         0%, 100% { transform: scale(1); }
+//         50% { transform: scale(1.05); }
+//     }
+// `;
+// document.head.appendChild(loadingStyles);
 
 // PDF Toggle Functionality
 function togglePDF(pdfId) {
