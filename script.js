@@ -195,9 +195,16 @@ function initProjectCarousel() {
     let cardOuterWidth = 0; // width including gap (derived from computed width + gap)
     let totalSlides = 0;
     
-    // Always show exactly 3 per slide (user request)
+    // Responsive projects per slide based on screen size
     function updateProjectsPerSlide() {
-        projectsPerSlide = 3;
+        const screenWidth = window.innerWidth;
+        if (screenWidth <= 480) {
+            projectsPerSlide = 1; // Show 1 card on small mobile
+        } else if (screenWidth <= 768) {
+            projectsPerSlide = 2; // Show 2 cards on tablet
+        } else {
+            projectsPerSlide = 3; // Show 3 cards on desktop
+        }
     }
     
     // Create indicators
@@ -341,24 +348,44 @@ function initProjectCarousel() {
         }
     });
     
-    // Touch/swipe support
+    // Touch/swipe support with improved mobile handling
     let startX = 0;
     let endX = 0;
+    let startTime = 0;
+    let isDragging = false;
     
     projectsWrapper.addEventListener('touchstart', function(e) {
         startX = e.touches[0].clientX;
-    });
+        startTime = Date.now();
+        isDragging = true;
+    }, { passive: true });
+    
+    projectsWrapper.addEventListener('touchmove', function(e) {
+        if (!isDragging) return;
+        // Allow scrolling vertically while swiping horizontally
+        const currentX = e.touches[0].clientX;
+        const diffX = Math.abs(currentX - startX);
+        
+        // If horizontal swipe is significant, prevent vertical scroll
+        if (diffX > 10) {
+            e.preventDefault();
+        }
+    }, { passive: false });
     
     projectsWrapper.addEventListener('touchend', function(e) {
+        if (!isDragging) return;
+        isDragging = false;
         endX = e.changedTouches[0].clientX;
         handleSwipe();
-    });
+    }, { passive: true });
     
     function handleSwipe() {
         const threshold = 50;
         const diff = startX - endX;
+        const timeDiff = Date.now() - startTime;
         
-        if (Math.abs(diff) > threshold) {
+        // Consider it a swipe if moved more than threshold pixels in less than 300ms
+        if (Math.abs(diff) > threshold && timeDiff < 300) {
             if (diff > 0) {
                 // Swipe left - next slide
                 nextBtn.click();
@@ -791,6 +818,13 @@ function initPathfindingMaze() {
     const canvas = document.getElementById('pathfindingMaze');
     if (!canvas) return;
     
+    // Disable maze on mobile devices to prevent scrolling issues
+    const isMobile = window.innerWidth <= 768;
+    if (isMobile) {
+        canvas.style.display = 'none';
+        return;
+    }
+    
     const ctx = canvas.getContext('2d');
     let animationId;
     
@@ -1148,8 +1182,11 @@ function initPathfindingMaze() {
         }
     }
     
-    // Handle clicks to add/remove obstacles
+    // Handle clicks to add/remove obstacles (desktop only)
     function handleClick(event) {
+        event.preventDefault();
+        event.stopPropagation();
+        
         const rect = canvas.getBoundingClientRect();
         const x = event.clientX - rect.left;
         const y = event.clientY - rect.top;
@@ -1181,11 +1218,29 @@ function initPathfindingMaze() {
     
     // Handle window resize
     function handleResize() {
-        initMaze();
+        const isMobile = window.innerWidth <= 768;
+        if (isMobile) {
+            canvas.style.display = 'none';
+            if (animationId) {
+                cancelAnimationFrame(animationId);
+            }
+        } else {
+            canvas.style.display = 'block';
+            initMaze();
+            if (!animationId) {
+                animate();
+            }
+        }
     }
     
-    // Event listeners
+    // Event listeners (desktop only)
     canvas.addEventListener('click', handleClick);
+    
+    // Prevent touch events on canvas to allow scrolling
+    canvas.addEventListener('touchstart', function(e) {
+        e.stopPropagation();
+    }, { passive: true });
+    
     window.addEventListener('resize', handleResize);
     
     // Initialize and start
