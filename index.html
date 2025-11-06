@@ -44,7 +44,7 @@
     </nav>
 
     <!-- Hero Section -->
-     
+
     <section id="home" class="hero">
         <!-- Pathfinding Maze Background -->
         <canvas id="pathfindingMaze" class="maze-background"></canvas>
@@ -815,62 +815,40 @@ class Developer:
     <section id="contact" class="contact">
         <div class="container">
             <h2 class="section-title">Get In Touch</h2>
-            <div class="contact-content">
-                <div class="contact-info">
+            <div class="contact-content-simple">
+                <div class="contact-info-center">
                     <h3>Let's Connect</h3>
                     <p>
-                        <!-- PLACEHOLDER: Add your contact message -->
                         I'm always interested in new opportunities and exciting projects. 
                         Feel free to reach out if you'd like to collaborate!
                     </p>
                     <div class="contact-items">
                         <div class="contact-item">
                             <i class="fas fa-envelope"></i>
-                            <span><!-- PLACEHOLDER: Your email -->antonopoulos@ip-paris.fr</span>
+                            <span>antonopoulos@ip-paris.fr</span>
                         </div>
                         <div class="contact-item">
                             <i class="fas fa-phone"></i>
-                            <span><!-- PLACEHOLDER: Your phone -->+33 6 51 44 59 54</span>
+                            <span>+33 6 51 44 59 54</span>
                         </div>
                         <div class="contact-item">
                             <i class="fas fa-map-marker-alt"></i>
-                            <span><!-- PLACEHOLDER: Your location -->Paris, France</span>
+                            <span>Paris, France</span>
                         </div>
                     </div>
+                    <a href="mailto:antonopoulos@ip-paris.fr?subject=Portfolio Contact" class="btn-primary email-button">
+                        <i class="fas fa-envelope"></i>
+                        Send me an Email
+                    </a>
                     <div class="social-links">
-                        <a href="www.linkedin.com/in/mathieu-antonopoulos-01b94616a" class="social-link" target="_blank">
+                        <a href="https://www.linkedin.com/in/mathieu-antonopoulos-01b94616a" class="social-link" target="_blank">
                             <i class="fab fa-linkedin-in"></i>
                         </a>
                         <a href="https://github.com/Mathieu-Antonopoulos" class="social-link" target="_blank">
                             <i class="fab fa-github"></i>
                         </a>
-                        <!-- PLACEHOLDER: Add your social media links -->
                     </div>
                 </div>
-                <form class="contact-form" id="contact-form" action="https://formsubmit.co/mathieu.antonopoulos@gmail.com" method="POST">
-                    <!-- FormSubmit Configuration -->
-                    <input type="hidden" name="_subject" value="New Portfolio Contact Message">
-                    <input type="hidden" name="_captcha" value="false">
-                    <input type="hidden" name="_template" value="table">
-                    <input type="hidden" name="_next" value="https://mathieu-antonopoulos.github.io/index.html#contact">
-                    
-                    <div class="form-group">
-                        <input type="text" name="name" placeholder="Your Name" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="email" name="email" placeholder="Your Email" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="text" name="subject" placeholder="Subject" required>
-                    </div>
-                    <div class="form-group">
-                        <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
-                    </div>
-                    <button type="submit" class="btn-primary">
-                        <i class="fas fa-paper-plane"></i>
-                        Send Message
-                    </button>
-                </form>
             </div>
         </div>
     </section>
