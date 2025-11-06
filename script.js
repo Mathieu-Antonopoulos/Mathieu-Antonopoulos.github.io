@@ -55,7 +55,9 @@ function initNavigation() {
             const targetElement = document.getElementById(targetId);
             
             if (targetElement) {
-                const offsetTop = targetElement.offsetTop - 70; // Account for navbar height
+                // On mobile (no navbar), scroll to exact position; on desktop, account for navbar
+                const isMobile = window.innerWidth <= 768;
+                const offsetTop = targetElement.offsetTop - (isMobile ? 0 : 70);
                 
                 window.scrollTo({
                     top: offsetTop,
