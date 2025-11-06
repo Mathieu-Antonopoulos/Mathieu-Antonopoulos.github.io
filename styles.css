@@ -1231,15 +1231,13 @@ section {
 
 .skill-item {
     margin-bottom: 0.25rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
 }
 
 .skill-name {
     margin-bottom: 0;
     color: var(--text-secondary);
     font-weight: 500;
+    display: inline;
 }
 
 .skill-bar {
@@ -1288,11 +1286,13 @@ section {
     font-size: var(--font-size-xs);
     color: var(--text-muted);
     font-style: italic;
+    display: inline;
+    margin-left: 0.5rem;
 }
 
 .skill-category:last-child .skill-item {
     position: relative;
-    margin-bottom: var(--spacing-lg); /* Keep normal margins for interests */
+    margin-bottom: 0.25rem; /* Same spacing as languages */
 }
 
 .skill-category:last-child .skill-name {
