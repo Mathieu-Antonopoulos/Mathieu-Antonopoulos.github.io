@@ -468,6 +468,9 @@ function initSkillBars() {
 function initContactForm() {
     const contactForm = document.getElementById('contact-form');
     
+    // Check if form exists (it may have been replaced with a mailto link)
+    if (!contactForm) return;
+    
     contactForm.addEventListener('submit', function(e) {
         e.preventDefault();
         
@@ -1022,6 +1025,13 @@ function initPathfindingMaze() {
     // Update agent position
     function updateAgent() {
         if (path.length === 0 || agent.targetIndex >= path.length) {
+            // Agent has reached the end, reset and start new path
+            trail = [];
+            currentEndPosition = generateRandomEndPosition();
+            agent.x = 0;
+            agent.y = GRID_HEIGHT - 1;
+            agent.targetIndex = 0;
+            findPath(false);
             return;
         }
         
@@ -1039,16 +1049,8 @@ function initPathfindingMaze() {
             // Reached target, move to next
             agent.targetIndex++;
             if (agent.targetIndex >= path.length) {
-                // Reached end, restart from bottom-left with new random target
-                trail = [];
-                // Generate new random end position for next run
-                currentEndPosition = generateRandomEndPosition();
-                // Find new path from start
-                findPath(false);
-                // Reset agent position after new path is found
-                agent.x = 0;
-                agent.y = GRID_HEIGHT - 1;
-                agent.targetIndex = 0;
+                // Reached end, will reset on next update
+                return;
             }
         } else {
             // Move towards target
