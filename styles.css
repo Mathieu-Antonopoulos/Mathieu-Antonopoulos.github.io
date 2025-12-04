@@ -687,7 +687,7 @@ section {
     cursor: pointer;
     transition: all var(--transition-normal);
     /* less top padding it up  */
-    margin-top: -80px;
+    margin-top: -60px;
 }
 
 .carousel-indicator.active {
