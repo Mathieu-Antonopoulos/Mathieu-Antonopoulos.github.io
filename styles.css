@@ -495,8 +495,8 @@ section {
     gap: var(--spacing-xs);
 }
 
-.dots span {
-    width: 12px;
+.dots span {    
+    width: 12px;    
     height: 12px;
     border-radius: 50%;
 }
@@ -527,14 +527,16 @@ section {
     background: var(--bg-primary);
     padding: var(--spacing-3xl) 0 var(--spacing-xl) 0; /* Reduced bottom padding */
     overflow: visible; /* Ensure hover effects aren't clipped */
+    margin-bottom: -20px;
 }
 
 .projects-filter {
     display: flex;
     justify-content: center;
     gap: var(--spacing-md);
-    /* Reduced from var(--spacing-3xl) to tighten space above carousel */
-    margin-bottom: var(--spacing-md);
+    margin-top: -30px;
+    /* Reduced spacing between filter buttons and carousel */
+    margin-bottom: -20px;
     flex-wrap: wrap;
 }
 
@@ -552,7 +554,7 @@ section {
 .filter-btn:hover,
 .filter-btn.active {
     background: var(--primary-color);
-    color: var(--text-primary);
+    color: #ffffff;
     border-color: var(--primary-color);
 }
 
@@ -601,6 +603,13 @@ section {
     overflow: hidden;
     transition: transform 0.3s ease, box-shadow 0.35s ease, border-color 0.3s ease;
     position: relative;
+}
+
+/* For square-ish windows (portrait or narrow), show 2 cards per slide */
+@media (min-width: 769px) and (max-aspect-ratio: 13/10) {
+    .project-card {
+        flex: 0 0 calc((100% - var(--carousel-gap)) / 2);
+    }
 }
 
 .project-card:hover {
@@ -663,6 +672,7 @@ section {
 
 /* Carousel Indicators */
 .carousel-indicators {
+    padding-top: -30px;
     display: flex;
     justify-content: center;
     gap: var(--spacing-sm);
@@ -677,7 +687,7 @@ section {
     cursor: pointer;
     transition: all var(--transition-normal);
     /* less top padding it up  */
-    margin-top: -54px;
+    margin-top: -80px;
 }
 
 .carousel-indicator.active {
@@ -755,7 +765,7 @@ section {
 }
 
 .project-content {
-    padding: var(--spacing-xl);
+    padding: var(--spacing-md); /* Reduced padding so text gets closer to borders */
     text-align: center; /* Center align all content */
     display: flex;
     flex-direction: column;
@@ -779,7 +789,7 @@ section {
     line-height: 1.15;
     text-align: center;
     position: relative;
-    padding-bottom: 0.6rem; /* minimal space for the blue bar */
+    padding-bottom: 0.6rem; /* tighter space for the blue bar */
 }
 
 /* Thin blue separator under title */
@@ -797,15 +807,12 @@ section {
 }
 
 .project-date {
-    margin-top: -12px;
-    padding-top: -20px;
+    margin-top: -1rem; /* Reduced to 1/3 of original spacing */
     margin-bottom: 0;
     font-size: var(--font-size-sm);
     font-weight: 500;
     color: var(--text-secondary);
-    background: none;
-    border: none;
-    border-radius: 0;
+    text-align: center;
     line-height: 1;
 }
 
@@ -1433,7 +1440,7 @@ section {
 }
 
 .contact-items {
-    margin-bottom: var(--spacing-xl);
+    margin-bottom: var(--spacing-xs);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -1613,8 +1620,8 @@ section {
     }
     
     .project-card {
-        flex: 0 0 calc((100% - var(--carousel-gap)) / 2);
-        min-width: 250px;
+        flex: 0 0 100%; /* Show only 1 card on mobile */
+        min-width: 0;
         max-width: none;
     }
     
@@ -1689,13 +1696,12 @@ section {
     
     .project-header {
         flex-direction: column;
-        align-items: flex-start;
+        align-items: center; /* Keep centered on mobile */
         gap: var(--spacing-sm);
     }
     
     .project-date {
-        margin-left: 0;
-        align-self: flex-end;
+        text-align: center; /* Ensure date stays centered on mobile */
     }
     
     .pdf-container {
@@ -1764,7 +1770,7 @@ section {
     }
     
     .project-content {
-        padding: var(--spacing-md);
+        padding: var(--spacing-sm); /* Even tighter on mobile for wider text */
     }
     
     .project-content h3 {
@@ -1809,15 +1815,13 @@ section {
     
     .project-header {
         flex-direction: column;
-        align-items: stretch;
+        align-items: center; /* Keep centered even on smallest screens */
         gap: var(--spacing-xs);
     }
     
     .project-date {
-        margin-left: 0;
-        align-self: flex-start;
+        text-align: center; /* Ensure centered on smallest screens */
         font-size: var(--font-size-xs);
-        padding: var(--spacing-xs) var(--spacing-sm);
     }
     
     .pdf-header {

@@ -184,7 +184,76 @@ function initProjectCarousel() {
     const indicatorsContainer = document.getElementById('carouselIndicators');
     const filterButtons = document.querySelectorAll('.filter-btn');
     const projectsContainer = document.querySelector('.projects-container');
-    
+
+    // Auto-collapse long descriptions when they don't fit in the available card space
+    const MAX_DESCRIPTION_HEIGHT = 80; // base threshold for collapsing
+    const projectDescriptions = document.querySelectorAll('.project-description');
+
+    projectDescriptions.forEach(desc => {
+        const shortText = desc.querySelector('.description-short');
+        if (!shortText) return;
+
+        // Measure full height of the text
+        const originalHeight = shortText.style.maxHeight;
+        shortText.style.maxHeight = 'none';
+        const fullHeight = shortText.scrollHeight;
+        shortText.style.maxHeight = originalHeight || '';
+
+        // Measure available space inside the card / carousel window
+        const card = desc.closest('.project-card');
+        let availableHeight = Infinity;
+        if (card) {
+            const cardRect = card.getBoundingClientRect();
+            const descRect = desc.getBoundingClientRect();
+            // Space from top of description to bottom of card
+            availableHeight = cardRect.bottom - descRect.top;
+        } else if (projectsContainer) {
+            // Fallback: use projects container height
+            availableHeight = projectsContainer.clientHeight;
+        }
+
+        // Collapse if:
+        // 1. Text is longer than our threshold AND
+        // 2. Text is longer than available space in the card
+        if (fullHeight > MAX_DESCRIPTION_HEIGHT && fullHeight > availableHeight) {
+            desc.classList.add('collapsible');
+            shortText.style.maxHeight = MAX_DESCRIPTION_HEIGHT + 'px';
+            shortText.style.overflow = 'hidden';
+            shortText.style.position = 'relative';
+
+            // Inject compact icon-only expand button only for this description
+            let btn = desc.querySelector('.expand-btn');
+            if (!btn) {
+                btn = document.createElement('button');
+                btn.className = 'expand-btn';
+                btn.type = 'button';
+                btn.setAttribute('aria-label', 'Expand project description');
+
+                const icon = document.createElement('i');
+                icon.className = 'fas fa-ellipsis-h'; // subtle three-dots icon
+                btn.appendChild(icon);
+
+                // Toggle only the max-height, don't rely on the `.expanded` class
+                let expanded = false;
+                btn.addEventListener('click', function () {
+                    if (expanded) {
+                        shortText.style.maxHeight = MAX_DESCRIPTION_HEIGHT + 'px';
+                        btn.setAttribute('aria-label', 'Expand project description');
+                        icon.className = 'fas fa-ellipsis-h';
+                        expanded = false;
+                    } else {
+                        shortText.style.maxHeight = fullHeight + 'px';
+                        btn.setAttribute('aria-label', 'Collapse project description');
+                        icon.className = 'fas fa-chevron-up';
+                        expanded = true;
+                    }
+                });
+
+                desc.appendChild(btn);
+            }
+        }
+    });
+
     // Accessibility labels
     prevBtn.setAttribute('aria-label', 'Previous projects');
     nextBtn.setAttribute('aria-label', 'Next projects');
@@ -197,20 +266,27 @@ function initProjectCarousel() {
     let cardOuterWidth = 0; // width including gap (derived from computed width + gap)
     let totalSlides = 0;
     
-    // Responsive projects per slide based on screen size
+    // Responsive projects per slide based on screen size and aspect ratio
     function updateProjectsPerSlide() {
         const screenWidth = window.innerWidth;
-        if (screenWidth <= 480) {
-            projectsPerSlide = 1; // Show 1 card on small mobile
-        } else if (screenWidth <= 768) {
-            projectsPerSlide = 2; // Show 2 cards on tablet
+        const screenHeight = window.innerHeight;
+        const aspectRatio = screenWidth / screenHeight;
+        
+        if (screenWidth <= 768) {
+            projectsPerSlide = 1; // Show 1 card on mobile/tablet
+        } else if (aspectRatio <= 1.3) {
+            // Close to square window (between 1:1 and 1.3:1 aspect ratio)
+            projectsPerSlide = 2; // Show 2 cards
         } else {
-            projectsPerSlide = 3; // Show 3 cards on desktop
+            projectsPerSlide = 3; // Show 3 cards on wider screens
         }
     }
     
     // Create indicators
     function createIndicators() {
+        // Make sure we have the current projectsPerSlide value
+        updateProjectsPerSlide();
+        
         indicatorsContainer.innerHTML = '';
         totalSlides = Math.ceil(filteredProjects.length / projectsPerSlide);
         
@@ -408,28 +484,28 @@ function initProjectCarousel() {
         }, 120);
     });
     
-    // Auto-play functionality (optional)
-    let autoPlayInterval;
+    // // Auto-play functionality (optional)
+    // let autoPlayInterval;
     
-    function startAutoPlay() {
-        autoPlayInterval = setInterval(() => {
-            const totalSlides = Math.ceil(filteredProjects.length / projectsPerSlide);
-            if (currentSlide < totalSlides - 1) {
-                goToSlide(currentSlide + 1);
-            } else {
-                goToSlide(0);
-            }
-        }, 5000);
-    }
+    // function startAutoPlay() {
+    //     autoPlayInterval = setInterval(() => {
+    //         const totalSlides = Math.ceil(filteredProjects.length / projectsPerSlide);
+    //         if (currentSlide < totalSlides - 1) {
+    //             goToSlide(currentSlide + 1);
+    //         } else {
+    //             goToSlide(0);
+    //         }
+    //     }, 5000);
+    // }
     
-    function stopAutoPlay() {
-        clearInterval(autoPlayInterval);
-    }
+    // function stopAutoPlay() {
+    //     clearInterval(autoPlayInterval);
+    // }
     
-    // Pause auto-play on hover
-    const projectsCarousel = document.querySelector('.projects-carousel');
-    projectsCarousel.addEventListener('mouseenter', stopAutoPlay);
-    projectsCarousel.addEventListener('mouseleave', startAutoPlay);
+    // // Pause auto-play on hover
+    // const projectsCarousel = document.querySelector('.projects-carousel');
+    // projectsCarousel.addEventListener('mouseenter', stopAutoPlay);
+    // projectsCarousel.addEventListener('mouseleave', startAutoPlay);
     
     // Initialize after a short delay to ensure layout is ready
     setTimeout(() => {
@@ -437,7 +513,7 @@ function initProjectCarousel() {
         updateCarousel();
     }, 60);
     
-    // startAutoPlay(); // Uncomment to enable auto-play
+    // startAutoPlay(); // Auto-play is disabled
 }
 
 // Skill bars animation
@@ -603,43 +679,7 @@ function removeNotification(notification) {
     }, 300);
 }
 
-// Parallax effect for floating cards
-function initParallaxEffect() {
-    const floatingCards = document.querySelectorAll('.floating-card');
-    
-    window.addEventListener('scroll', function() {
-        const scrolled = window.pageYOffset;
-        const parallaxSpeed = 0.5;
-        
-        floatingCards.forEach((card, index) => {
-            const yPos = -(scrolled * parallaxSpeed * (index + 1) * 0.1);
-            card.style.transform = `translateY(${yPos}px)`;
-        });
-    });
-}
-
-// Add smooth hover effects for project cards
-function initProjectHoverEffects() {
-    const projectCards = document.querySelectorAll('.project-card');
-    
-    projectCards.forEach(card => {
-        card.addEventListener('mouseenter', function() {
-            this.style.transform = 'translateY(-10px) scale(1.02)';
-        });
-        
-        card.addEventListener('mouseleave', function() {
-            this.style.transform = 'translateY(0) scale(1)';
-        });
-    });
-}
-
-// Initialize additional effects when DOM is loaded
-document.addEventListener('DOMContentLoaded', function() {
-    initParallaxEffect();
-    initProjectHoverEffects();
-});
-
-// Add some Easter eggs for fun
+// Easter egg: Konami Code
 let konamiCode = [];
 const konamiSequence = [
     'ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown',
@@ -710,89 +750,6 @@ function throttle(func, limit) {
 
 // Apply throttling to scroll events
 window.addEventListener('scroll', throttle(updateActiveNavLink, 100));
-
-// Add loading screen functionality
-// function initLoadingScreen() {
-//     const loadingScreen = document.createElement('div');
-//     loadingScreen.id = 'loading-screen';
-//     loadingScreen.innerHTML = `
-//         <div class="loading-content">
-//             <div class="loading-logo">MA</div>
-//             <div class="loading-spinner"></div>
-//             <p>Loading Portfolio...</p>
-//         </div>
-//     `;
-    
-//     loadingScreen.style.cssText = `
-//         position: fixed;
-//         top: 0;
-//         left: 0;
-//         width: 100%;
-//         height: 100%;
-//         background: var(--bg-primary);
-//         display: flex;
-//         align-items: center;
-//         justify-content: center;
-//         z-index: 9999;
-//         opacity: 1;
-//         transition: opacity 0.5s ease-out;
-//     `;
-    
-//     const loadingContent = loadingScreen.querySelector('.loading-content');
-//     loadingContent.style.cssText = `
-//         text-align: center;
-//         color: var(--text-primary);
-//     `;
-    
-//     const loadingLogo = loadingScreen.querySelector('.loading-logo');
-//     loadingLogo.style.cssText = `
-//         font-size: 3rem;
-//         font-weight: 700;
-//         background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
-//         -webkit-background-clip: text;
-//         -webkit-text-fill-color: transparent;
-//         margin-bottom: 1rem;
-//         animation: pulse 2s ease-in-out infinite;
-//     `;
-    
-//     const loadingSpinner = loadingScreen.querySelector('.loading-spinner');
-//     loadingSpinner.style.cssText = `
-//         width: 40px;
-//         height: 40px;
-//         border: 3px solid var(--border-color);
-//         border-top: 3px solid var(--primary-color);
-//         border-radius: 50%;
-//         animation: spin 1s linear infinite;
-//         margin: 0 auto 1rem auto;
-//     `;
-    
-//     document.body.prepend(loadingScreen);
-    
-//     // Remove loading screen when everything is loaded
-//     window.addEventListener('load', function() {
-//         setTimeout(() => {
-//             loadingScreen.style.opacity = '0';
-//             setTimeout(() => {
-//                 if (loadingScreen.parentNode) {
-//                     loadingScreen.parentNode.removeChild(loadingScreen);
-//                 }
-//             }, 500);
-//         }, 1000);
-//     });
-// }
-
-// // Initialize loading screen
-// initLoadingScreen();
-
-// // Add CSS animations for loading screen
-// const loadingStyles = document.createElement('style');
-// loadingStyles.textContent = `
-//     @keyframes pulse {
-//         0%, 100% { transform: scale(1); }
-//         50% { transform: scale(1.05); }
-//     }
-// `;
-// document.head.appendChild(loadingStyles);
 
 // PDF Toggle Functionality
 function togglePDF(pdfId) {
@@ -1165,7 +1122,7 @@ function initPathfindingMaze() {
             ctx.clip();
             
             // Draw image with reduced opacity
-            ctx.globalAlpha = 1.1; // Less opaque (50% transparency)
+            ctx.globalAlpha = 1.1; 
             ctx.drawImage(agentImage, 
                 agentScreenX - imageSize / 2, 
                 agentScreenY - imageSize / 2, 
@@ -1259,18 +1216,4 @@ function initPathfindingMaze() {
         canvas.removeEventListener('click', handleClick);
         window.removeEventListener('resize', handleResize);
     });
-}
-
-// Toggle project description expansion
-function toggleDescription(button) {
-    const projectDescription = button.closest('.project-description');
-    const isExpanded = projectDescription.classList.contains('expanded');
-    
-    if (isExpanded) {
-        projectDescription.classList.remove('expanded');
-        button.textContent = 'Read More';
-    } else {
-        projectDescription.classList.add('expanded');
-        button.textContent = 'Read Less';
-    }
 }
